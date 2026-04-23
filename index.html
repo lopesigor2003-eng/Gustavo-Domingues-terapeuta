@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gustavo Domingues | Terapia Sistêmica em Gramado</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --navy: #0F172A;
+            --accent: #2563EB;
+            --warm-white: #FDFDFB;
+            --bg-page: #F4F4F1;
+            --text-main: #1A202C;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+            --success: #25D366;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--bg-page);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .playfair, .logo-text {
+            font-family: Georgia, serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--warm-white);
+            z-index: 1000;
+            border-bottom: 1px solid #E2E8F0;
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 30px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--navy);
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* --- Hero Section (Geometric Balance Layout) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--navy);
+            padding-top: 80px;
+        }
+
+        @media (min-width: 992px) {
+            .hero {
+                flex-direction: row;
+                height: 100vh;
+                overflow: hidden;
+            }
+        }
+
+        .hero-sidebar {
+            background: transparent;
+            color: white;
+            padding: 80px 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            z-index: 2;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 992px) {
+            .hero-sidebar { max-width: 65%; }
+        }
+
+        .profile-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            font-weight: 400;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            opacity: 0.8;
+            margin-bottom: 48px;
+            font-weight: 300;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .hero-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content img {
+            height: 90vh;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin-right: -5%; /* Slightly pull to the right for depth */
+        }
+
+        .cta-button {
+            background-color: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+            width: fit-content;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: var(--navy);
+            font-weight: 400;
+        }
+
+        /* --- About Grid --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .about-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* --- Services (Cards) --- */
+        .bg-light { background-color: var(--warm-white); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin: 0 0 12px 0;
+            color: var(--navy);
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-card p {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+
+        .author {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            height: 220px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #CBD5E1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- Info Bar (Footer Pattern) --- */
+        .info-bar {
+            background: var(--warm-white);
+            border-top: 1px solid #E2E8F0;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 60px 0;
+        }
+
+        .info-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        /* --- Maps --- */
+        .map-wrapper {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 40px;
+            border: 1px solid #E2E8F0;
+        }
+
+        /* --- Floating WA --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--white);
+            color: var(--navy);
+            padding: 80px 0 30px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--navy);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #mobile-menu.active { right: 0; }
+
+        #mobile-menu a {
+            font-size: 2rem;
+            font-family: Georgia, serif;
+            color: white;
+            text-decoration: none;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating WA -->
+    <a href="https://wa.me/5554999178971" class="whatsapp-float" target="_blank" aria-label="Contato via WhatsApp">
+        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+    </a>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+        <button class="close-menu" onclick="toggleMenu()">
+            <i data-lucide="x" style="width: 32px; height: 32px;"></i>
+        </button>
+        <a href="#home" onclick="toggleMenu()">Início</a>
+        <a href="#sobre" onclick="toggleMenu()">Sobre</a>
+        <a href="#servicos" onclick="toggleMenu()">Serviços</a>
+        <a href="#ambiente" onclick="toggleMenu()">Ambiente</a>
+        <a href="#contato" onclick="toggleMenu()">Contato</a>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNBs96QUITG3Ag1ZElSJEBXVwsPkzH366UhqtJJ=s1000" alt="Gustavo Domingues Logo">
+                </a>
+                <div class="nav-links">
+                    <a href="#home">Início</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#ambiente">Ambiente</a>
+                    <a href="#contato">Contato</a>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-sidebar">
+            <div class="profile-tag">Especialista CEFI</div>
+            <h1>Acolhimento e Transformação Sistêmica</h1>
+            <p>Um espaço dedicado a compreender seus vínculos e construir caminhos para relações mais saudáveis e significativas.</p>
+            <a href="https://wa.me/5554999178971" class="cta-button" target="_blank">
+                Agendar no WhatsApp
+                <i data-lucide="send"></i>
+            </a>
+            
+            <div style="margin-top:48px; display:flex; gap:16px; align-items:center">
+                <div style="width:64px; height:64px; border-radius:50%; background:#475569; border:2px solid white; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="https://euterapeuta.com.br/storage/users/79049/profile-a3610674ed035dd83eb9b6a8c641d8f5.webp" alt="Avatar Gustavo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="text-align: left;">
+                    <div style="color: #F59E0B; font-size: 16px; letter-spacing: 2px;">★★★★★</div>
+                    <div style="font-size:14px; opacity:0.7">Avaliação 5 Estrelas</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content reveal">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipMDkKbIGuVypniJaeeTBlKKO2g6s6lkY6W2KmHV=s1600" alt="Gustavo Domingues - Terapeuta">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="sobre">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="https://euterapeuta.com.br/storage/users/79049/profile-a3610674ed035dd83eb9b6a8c641d8f5.webp" alt="Gustavo Domingues Profile">
+                </div>
+                <div class="about-text reveal">
+                    <span class="section-label">O Profissional</span>
+                    <h2 class="section-title">Olhar Clínico e Sensibilidade Sistêmica</h2>
+                    <p>Meu nome é Gustavo Domingues e minha prática clínica é fundamentada no entendimento de que nossos dilemas individuais estão intrinsecamente ligados aos sistemas em que vivemos.</p>
+                    <p>Especializado pelo CEFI, atuo no acompanhamento de indivíduos, casais e famílias, buscando desatar nós relacionais e promover um novo equilíbrio emocional.</p>
+                    <p>Aqui, a terapia é encarada como um convite à transformação e à construção de novos significados para sua história.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section bg-light" id="servicos">
+        <div class="container">
+            <span class="section-label">Modalidades</span>
+            <h2 class="section-title">Cuidado Especializado</h2>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <h3>Terapia Individual</h3>
+                    <p>Foco no autoconhecimento, quebra de padrões repetitivos e fortalecimento da saúde mental e emocional.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Terapia de Casal</h3>
+                    <p>Mediação e apoio para comunicação, resolução de conflitos profundos e reconstrução da conexão emocional.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Terapia Familiar</h3>
+                    <p>Acolhimento da família em processos de transição, conflitos geracionais, luto ou adaptações sistêmicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="container">
+            <span class="section-label">Impacto</span>
+            <h2 class="section-title">Relatos de Pacientes</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p>"O Gustavo é extremamente profissional e acolhedor. Seu olhar sistêmico me ajudou a entender padrões que eu nem percebia."</p>
+                    <div class="author">Thalyta Berny</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p>"Um processo transformador. O ambiente e a condução das sessões transmitem uma segurança indispensável para o tratamento."</p>
+                    <div class="author">Caroline Donato</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p>"Profissional excepcional. A evolução que percebo nos meus relacionamentos familiares é nítida e muito positiva."</p>
+                    <div class="author">Marcelo Fassbinder</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environment -->
+    <section class="section bg-light" id="ambiente">
+        <div class="container">
+            <span class="section-label">Espaço</span>
+            <h2 class="section-title">Conforto e Privacidade</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item reveal"><img src="https://lh3.googleusercontent.com/p/AF1QipP4RJqsVf6MqZ6Re7klTOlWS6gHzwHns3dAcMbe=s1000" alt="Consultório Visão 1"></div>
+                <div class="gallery-item reveal"><img src="https://lh3.googleusercontent.com/p/AF1QipPuadzh55Msl1mz93TSFPmug1mwEC5mR_DoVnd5=s1000" alt="Consultório Visão 2"></div>
+                <div class="gallery-item reveal"><img src="https://lh3.googleusercontent.com/p/AF1QipNFnP_c4k0zdYiAIqx_MkA8rUJTZdfw8fjj5slI=s1000" alt="Detalhe do Ambiente"></div>
+                <div class="gallery-item reveal"><img src="https://lh3.googleusercontent.com/p/AF1QipP7DvDa8h91QFJWmf-n_RuumA8JIS9RnnetHGPv=s1000" alt="Espaço de Espera"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Bar -->
+    <div class="info-bar" id="contato">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; width: 100%;">
+            <div class="info-block reveal">
+                <span class="info-label">Localização</span>
+                <span class="info-value">R. Venerável, R. Vigilante, 418<br>Gramado - RS, 95670-000</span>
+            </div>
+            <div class="info-block reveal">
+                <span class="info-label">Horários</span>
+                <span class="info-value">Todos os dias: 08:00 às 21:00</span>
+            </div>
+            <div class="info-block reveal">
+                <span class="info-label">Atendimento</span>
+                <span class="info-value">Presencial e Online</span>
+            </div>
+            <div class="info-block reveal" style="text-align: right">
+                <span class="info-label">Conecte-se</span>
+                <span class="info-value">@gustavosdomingues</span>
+            </div>
+        </div>
+        
+        <div class="container reveal" style="margin-top: 40px;">
+            <div class="map-wrapper">
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    src="https://maps.google.com/maps?q=R.+Vener%C3%A1vel,+418,+Gramado+-+RS,+95670-000&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="section text-center">
+        <div class="container reveal">
+            <h2 class="section-title">Inicie sua jornada de mudança hoje.</h2>
+            <p style="margin-bottom: 40px; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">Agende uma conversa inicial para entender como a terapia sistêmica pode auxiliar nos seus desafios atuais.</p>
+            <a href="https://wa.me/5554999178971" class="cta-button" target="_blank">
+                Agendar via WhatsApp
+                <i data-lucide="message-circle"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+                <div class="logo">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNBs96QUITG3Ag1ZElSJEBXVwsPkzH366UhqtJJ=s1000" alt="Gustavo Domingues Logo">
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <a href="https://www.instagram.com/gustavosdomingues/" style="color: var(--navy); opacity: 0.6;"><i data-lucide="instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/gustavo-domingues-775688212/" style="color: var(--navy); opacity: 0.6;"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Gustavo Domingues | CRP Em dia | Gramado - RS
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('active');
+        }
+
+        // Sticky Header & Scroll reveals
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Scroll reveal logic
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                if (rect.top <= viewHeight * 0.85) {
+                    el.classList.add('active');
+                }
+            });
+        });
+
+        // Initial check for elements in view
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= window.innerHeight) {
+                    el.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Scroll for local links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

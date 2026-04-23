@@ -145,7 +145,7 @@
         .hero-sidebar {
             background: transparent;
             color: white;
-            padding: 80px 5%;
+            padding: 40px 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -156,7 +156,10 @@
         }
 
         @media (min-width: 992px) {
-            .hero-sidebar { max-width: 65%; }
+            .hero-sidebar { 
+                max-width: 65%; 
+                padding: 80px 5%;
+            }
         }
 
         .profile-tag {
@@ -172,37 +175,66 @@
         }
 
         .hero h1 {
-            font-size: 72px;
-            line-height: 1.05;
-            margin-bottom: 24px;
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 20px;
             font-weight: 400;
-            max-width: 900px;
+            max-width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .hero h1 {
+                font-size: 72px;
+                line-height: 1.05;
+                max-width: 900px;
+            }
         }
 
         .hero p {
-            font-size: 22px;
+            font-size: 16px;
             opacity: 0.8;
-            margin-bottom: 48px;
+            margin-bottom: 32px;
             font-weight: 300;
-            max-width: 700px;
+            max-width: 100%;
             line-height: 1.5;
+        }
+
+        @media (min-width: 992px) {
+            .hero p {
+                font-size: 22px;
+                margin-bottom: 48px;
+                max-width: 700px;
+            }
         }
 
         .hero-content {
             flex-grow: 1;
             display: flex;
             align-items: flex-end;
-            justify-content: flex-end;
+            justify-content: center;
             position: relative;
             overflow: hidden;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .hero-content {
+                justify-content: flex-end;
+            }
         }
 
         .hero-content img {
-            height: 90vh;
+            height: 50vh;
             width: auto;
             object-fit: contain;
             display: block;
-            margin-right: -5%; /* Slightly pull to the right for depth */
+        }
+
+        @media (min-width: 992px) {
+            .hero-content img {
+                height: 90vh;
+                margin-right: -5%;
+            }
         }
 
         .cta-button {
